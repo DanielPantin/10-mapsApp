@@ -6,6 +6,11 @@ interface MarkerAndColor {
   marker: Marker;
 }
 
+interface PlainMarker {
+  color: string;
+  lngLat: number[];
+}
+
 @Component({
   templateUrl: './markers-page.component.html',
   styleUrl: "./markers-page.component.css"
@@ -26,7 +31,10 @@ export class MarkersPageComponent {
       zoom: this.zoom, // starting zoom
       navigationControl: false,
       geolocateControl: false,
+
     });
+
+    this.readFromLocalStorage();
 
     // const markerHtml = document.createElement('div');
     // markerHtml.innerHTML = 'Daniel Pantin'
@@ -62,12 +70,17 @@ export class MarkersPageComponent {
       color,
       marker,
     })
+    this.saveToLocalStorage();
+
+
+    marker.on("dragend", () => this.saveToLocalStorage());
 
   }
 
   deleteMarker(index: number) {
     this.markers[index].marker.remove();
     this.markers.splice(index, 1);
+    // localStorage.removeItem("plainMarkers");
   }
 
   flyTo(marker: Marker) {
@@ -75,6 +88,31 @@ export class MarkersPageComponent {
       zoom: 14,
       center: marker.getLngLat(),
     })
+  }
+
+  saveToLocalStorage() {
+    const plainMarker: PlainMarker[] = this.markers.map(({ color, marker }) => {
+      return {
+        color,
+        lngLat: marker.getLngLat().toArray(),
+      }
+    });
+
+    localStorage.setItem("plainMarkers", JSON.stringify(plainMarker))
+
+  }
+
+  readFromLocalStorage() {
+    const plainMarkersString = localStorage.getItem("plainMarkers") ?? "[]";
+
+    const plainMarkers: PlainMarker[] = JSON.parse(plainMarkersString);
+
+    plainMarkers.forEach(({color, lngLat}) => {
+      const coords = new LngLat(lngLat[0], lngLat[1]);
+      this.addMarker(coords, color);
+    })
+
+
   }
 
 }
