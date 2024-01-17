@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import "@maptiler/sdk/dist/maptiler-sdk.css";
 
 @Component({
   selector: 'app-root',

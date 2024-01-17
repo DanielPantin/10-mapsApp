@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
+  selector: "b",
   templateUrl: './maps-layout.component.html',
-  styles: ``
+  styleUrl: "./maps-layout.component.css"
 })
 export class MapsLayoutComponent {
 

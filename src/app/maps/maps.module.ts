@@ -10,6 +10,8 @@ import { MarkersPageComponent } from './pages/markers-page/markers-page.componen
 import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 import { ZoomRangePageComponent } from './pages/zoom-range-page/zoom-range-page.component';
 
+import * as maptilersdk from '@maptiler/sdk';
+maptilersdk.config.apiKey = 'OSUwj0L2WRMVLuQUgGoG';
 
 @NgModule({
   declarations: [
