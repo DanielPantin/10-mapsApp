@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MapsRoutingModule } from './maps-routing.module';
 import { MiniMapComponent } from './components/mini-map/mini-map.component';
-import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { SideMenuComponent } from '../alone/components/side-menu/side-menu.component';
 import { MapsLayoutComponent } from './layout/maps-layout/maps-layout.component';
 import { FullScreenPageComponent } from './pages/full-screen-page/full-screen-page.component';
 import { MarkersPageComponent } from './pages/markers-page/markers-page.component';
@@ -11,12 +11,12 @@ import { PropertiesPageComponent } from './pages/properties-page/properties-page
 import { ZoomRangePageComponent } from './pages/zoom-range-page/zoom-range-page.component';
 
 import * as maptilersdk from '@maptiler/sdk';
+import { CounterAloneComponent } from '../alone/components/counter-alone/counter-alone.component';
 maptilersdk.config.apiKey = 'OSUwj0L2WRMVLuQUgGoG';
 
 @NgModule({
   declarations: [
     MiniMapComponent,
-    SideMenuComponent,
     MapsLayoutComponent,
     FullScreenPageComponent,
     MarkersPageComponent,
@@ -26,6 +26,8 @@ maptilersdk.config.apiKey = 'OSUwj0L2WRMVLuQUgGoG';
   imports: [
     CommonModule,
     MapsRoutingModule,
+    CounterAloneComponent,
+    SideMenuComponent,
   ]
 })
 export class MapsModule { }
