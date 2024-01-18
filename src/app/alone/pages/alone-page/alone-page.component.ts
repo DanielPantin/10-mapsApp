@@ -8,6 +8,7 @@ import { SideMenuComponent } from '../../components/side-menu/side-menu.componen
   imports:[
     CommonModule,
     CounterAloneComponent,
+    SideMenuComponent,
   ],
   templateUrl: './alone-page.component.html',
   styleUrl: './alone-page.component.css'
