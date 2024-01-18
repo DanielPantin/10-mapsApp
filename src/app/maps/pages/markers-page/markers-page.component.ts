@@ -78,9 +78,15 @@ export class MarkersPageComponent {
   }
 
   deleteMarker(index: number) {
-    this.markers[index].marker.remove();
+    console.log("a");
+
+    const markerABorrar: Marker = this.markers[index].marker;
+    markerABorrar.remove();
     this.markers.splice(index, 1);
-    // localStorage.removeItem("plainMarkers");
+
+    localStorage.removeItem("plainmarkers");
+    this.saveToLocalStorage();
+
   }
 
   flyTo(marker: Marker) {
